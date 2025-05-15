@@ -55,12 +55,12 @@ class Main {
         System.out.println("0 - aby wyjść z programu");
         
         if (!scan.hasNextInt()) {
-            scan.next(); // clear invalid input
+            scan.next();
             throw new InputMismatchException("Wprowadzono literę zamiast cyfry!");
         }
         
         int choice = scan.nextInt();
-        scan.nextLine(); // Clear the buffer
+        scan.nextLine();
         
         if (choice < 0 || choice > 3) {
             throw new InputMismatchException("Wybór poza zakresem (0-3)!");
