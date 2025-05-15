@@ -122,4 +122,4 @@ class Main {
         }
     }
 }
-//git to jest
+//git to jest i to też dziala
