@@ -53,7 +53,6 @@ class Main {
     }
 
     public static String ReadName() throws WrongStudentName {
-        scan.nextLine();
         System.out.println("Podaj imię: ");
         String name = scan.nextLine();
         if(name.contains(" "))
