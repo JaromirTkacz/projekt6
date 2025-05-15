@@ -1,7 +1,7 @@
 compile = "javac -classpath .:target/dependency/* -d . $(find . -type f -name '*.java')"
 run = "java -classpath .:target/dependency/* Main"
+entrypoint = "src/main/java/Main.java"
 hidden = ["**/*.class"]
-modules = ["java-graalvm22.3", "nix"]
 
 [packager]
 language = "java"
@@ -19,7 +19,7 @@ start = "jdt-language-server"
 language = "java"
 
 [nix]
-channel = "stable-24_05"
+channel = "stable-22_11"
 
 [debugger]
 support = true
@@ -59,6 +59,6 @@ classPaths = ["."]
 mainClass = "Main"
 
 [deployment]
-build = ["sh", "-c", "javac -classpath .:target/dependency/* -d . $(find . -type f -name '*.java')"]
-run = ["sh", "-c", "java -classpath .:target/dependency/* Main"]
+build = ["javac", "-classpath", ".:target/dependency/*", "-d", ".", "$(find . -type f -name '*.java')"]
+run = ["java", "-classpath", ".:target/dependency/*", "Main"]
 deploymentTarget = "cloudrun"
