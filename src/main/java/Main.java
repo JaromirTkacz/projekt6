@@ -14,6 +14,7 @@ Poniższe zadania będą się sprowadzały do modyfikacji bazowego kodu. Proces 
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 class WrongStudentName extends Exception { }
 class WrongAge extends Exception { }
@@ -40,18 +41,31 @@ class Main {
                 System.out.println("Błędny wiek! Wiek musi być z zakresu 1-99.");
             } catch(WrongDateOfBirth e) {
                 System.out.println("Błędny format daty! Wymagany format: DD-MM-YYYY");
+            } catch(InputMismatchException e) {
+                System.out.println("Błąd wyboru: " + e.getMessage());
             }
         }
     }
 
-    public static int menu() {
+    public static int menu() throws InputMismatchException {
         System.out.println("Wciśnij:");
         System.out.println("1 - aby dodać studenta");
         System.out.println("2 - aby wypisać wszystkich studentów");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
+        
+        if (!scan.hasNextInt()) {
+            scan.next(); // clear invalid input
+            throw new InputMismatchException("Wprowadzono literę zamiast cyfry!");
+        }
+        
         int choice = scan.nextInt();
         scan.nextLine(); // Clear the buffer
+        
+        if (choice < 0 || choice > 3) {
+            throw new InputMismatchException("Wybór poza zakresem (0-3)!");
+        }
+        
         return choice;
     }
 
